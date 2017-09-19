@@ -7,7 +7,7 @@ import products from './data/products';
 // The state will also require a property for the current state of filterable data
 const initialState = {
   products: products,
-  current_filter: "all"
+  filter: "all"
 }
 
 // Finish writing the reducer for the `FILTER_PRODUCTS` action
@@ -16,9 +16,7 @@ const initialState = {
 const reducer = function(state = initialState, action) {
     switch(action.type){
       case FILTER_PRODUCTS:
-        let newState = (state);
-        newState.current_filter = action.payload;
-        return newState
+      return update(state,{filter:{$set:action.payload}});
         default: return state;
     }
     // When a `FILTER_PRODUCTS` is provided, return a new state

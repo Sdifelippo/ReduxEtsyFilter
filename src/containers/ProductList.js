@@ -7,19 +7,14 @@ class ProductList extends Component {
 
     render() {
         const {products} = this.props;
-        const productItems = products.map(element => {
           return (
-            <Product product={element} key={element.listing_id}/>
+            <ul className="ProductList">
+              {products.map(element => (<Product product={element}/>))}
+            </ul>
           );
-        });
         // Create a dynamically populated list of `<Product />` components
         // Each `<Product />` component should have a single object from the `products` state property (array)
         // applied to the component as a `product` property
-        return (
-            <ul className="ProductList">
-              {productItems}
-            </ul>
-        );
     }
 }
 
@@ -31,14 +26,10 @@ class ProductList extends Component {
 const mapStateToProps = function(state) {
     let products;
     // complete the `if else` statement including conditions and `products` value
-    if (state.currentFilter === 'overTwenty') {
-      products = state.products.filter( element => {
-      return parseFloat(element.price) > 20;
-    });
-} else if (state.currentFilter === 'underTwenty') {
-  products = state.products.filter( element => {
-  return parseFloat(element.price) < 20;
-});
+    if (state.filter === 'overTwenty') {
+      products = state.products.filter( element => element.price>20);
+} else if (state.filter === 'underTwenty') {
+  products = state.products.filter( element => element.price<20);
     } else {
       products = state.products
     }
