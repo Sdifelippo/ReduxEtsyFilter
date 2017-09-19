@@ -37,7 +37,7 @@ const mapStateToProps = function(state) {
     });
 } else if (state.currentFilter === 'underTwenty') {
   products = state.products.filter( element => {
-  return parseFloat(element.price) < 20;)
+  return parseFloat(element.price) < 20;
 });
     } else {
       products = state.products
